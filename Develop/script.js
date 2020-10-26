@@ -8,3 +8,7 @@ set color for past time blocks, present time blocks, future time blocks
 create click event for save button
     save text from input field to localStorage
 */
+
+setInterval(function () {
+        $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
+    }, 1000);
