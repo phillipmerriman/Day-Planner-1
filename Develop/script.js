@@ -9,6 +9,12 @@ create click event for save button
     save text from input field to localStorage
 */
 
+//render current day at top of planner
 setInterval(function () {
         $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
     }, 1000);
+
+//event listener for clicked save button
+$("button").on("click", function(){
+    console.log(`${this.id} event submitted!`);
+});
