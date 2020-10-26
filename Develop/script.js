@@ -16,13 +16,18 @@ create click event for save button
     render text from localStorage to event field (localStorage.getItem("name from setItem ↑ "))
 */
 
-//render current day at top of planner
+let currentHour = moment().format("h");
+
+//render current day and time at top of planner
 setInterval(function () {
         $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
     }, 1000);
 
+
+
 //event listener for clicked save button
-$(".submit").on("click", function(){
-    console.log(`${this.id} event submitted!`);
-    // console.log(this.id.value);
+$(".saveBtn").on("click", function(){
+    console.log(`${this.id} submit btn clicked!`);
+    console.log($("textarea").val());
+    localStorage.setItem(`${this.id}`, $("textarea").val());
 });
