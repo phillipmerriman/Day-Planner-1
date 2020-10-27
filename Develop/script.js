@@ -16,18 +16,145 @@ create click event for save button
     render text from localStorage to event field (localStorage.getItem("name from setItem ↑ "))
 */
 
-let currentHour = moment().format("h");
-
+//set variables
+let currentHour = Number.parseInt(moment().format("H"));
+let hour9 = Number.parseInt($("#hour-9").text().split(" ")[0]);
+let hour10 = Number.parseInt($("#hour-10").text().split(" ")[0]);
+let hour11 = Number.parseInt($("#hour-11").text().split(" ")[0]);
+let hour12 = Number.parseInt($("#hour-12").text().split(" ")[0]);
+let hour1 = Number.parseInt($("#hour-1").text().split(" ")[0]);
+let hour2 = Number.parseInt($("#hour-2").text().split(" ")[0]);
+let hour3 = Number.parseInt($("#hour-3").text().split(" ")[0]);
+let hour4 = Number.parseInt($("#hour-4").text().split(" ")[0]);
+let hour5 = Number.parseInt($("#hour-5").text().split(" ")[0]);
+console.log(hour1);
 //render current day and time at top of planner
 setInterval(function () {
-        $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
-    }, 1000);
+  $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
+}, 1000);
 
+//set color for past time blocks, present time blocks, future time blocks
+// if time has passed
+if (currentHour > hour9) {
+  //     add class .past
+  $("#9").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour9) {
+  //     add class .present
+  $("#9").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#9").removeClass("past present").addClass("future");
 
+if (currentHour > hour10) {
+  //     add class .past
+  $("#10").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour10) {
+  //     add class .present
+  $("#10").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#10").removeClass("past present").addClass("future");
+
+if (currentHour > hour11) {
+  //     add class .past
+  $("#11").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour11) {
+  //     add class .present
+  $("#11").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#11").removeClass("past present").addClass("future");
+
+if (currentHour > hour12) {
+  //     add class .past
+  $("#12").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour12) {
+  //     add class .present
+  $("#12").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#12").removeClass("past present").addClass("future");
+
+if (currentHour > hour1 + 12) {
+  //     add class .past
+  $("#1").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour1 + 12) {
+  //     add class .present
+  $("#1").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#1").removeClass("past present").addClass("future");
+
+if (currentHour > hour2 + 12) {
+  //     add class .past
+  $("#2").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour2 + 12) {
+  //     add class .present
+  $("#2").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#2").removeClass("past present").addClass("future");
+
+if (currentHour > hour3 + 12) {
+  //     add class .past
+  $("#3").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour3 + 12) {
+  //     add class .present
+  $("#3").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#3").removeClass("past present").addClass("future");
+
+if (currentHour > hour4 + 12) {
+  //     add class .past
+  $("#4").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour4 + 12) {
+  //     add class .present
+  $("#4").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#4").removeClass("past present").addClass("future");
+
+if (currentHour > hour5 + 12) {
+  //     add class .past
+  $("#5").removeClass("present future").addClass("past");
+}
+// if time is present
+else if (currentHour === hour5 + 12) {
+  //     add class .present
+  $("#5").removeClass("past future").addClass("present");
+}
+// if time is future
+//     add class .future
+else $("#5").removeClass("past present").addClass("future");
 
 //event listener for clicked save button
-$(".saveBtn").on("click", function(){
-    console.log(`${this.id} submit btn clicked!`);
-    console.log($("textarea").val());
-    localStorage.setItem(`${this.id}`, $("textarea").val());
+$(".saveBtn").on("click", function () {
+  console.log(`${this.id} submit btn clicked!`);
+  console.log($("textarea").val());
+  localStorage.setItem(`${this.id}`, $("textarea").val());
 });
