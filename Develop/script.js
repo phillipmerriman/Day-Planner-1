@@ -27,7 +27,7 @@ let hour2 = Number.parseInt($("#hour-2").text().split(" ")[0]);
 let hour3 = Number.parseInt($("#hour-3").text().split(" ")[0]);
 let hour4 = Number.parseInt($("#hour-4").text().split(" ")[0]);
 let hour5 = Number.parseInt($("#hour-5").text().split(" ")[0]);
-console.log(hour1);
+
 //render current day and time at top of planner
 setInterval(function () {
   $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
@@ -154,7 +154,18 @@ else $("#5").removeClass("past present").addClass("future");
 
 //event listener for clicked save button
 $(".saveBtn").on("click", function () {
-  console.log(`${this.id} submit btn clicked!`);
-  console.log($("textarea").val());
-  localStorage.setItem(`${this.id}`, $("textarea").val());
+  //save this timeblock event to localStorage
+  let thisEvent = $(this).siblings('textarea').val();
+  localStorage.setItem(`${this.id}`, thisEvent);
 });
+
+//set event to corresponding timeblock
+$("#9").append(localStorage.getItem("submit-9am"));
+$("#10").append(localStorage.getItem("submit-10am"));
+$("#11").append(localStorage.getItem("submit-11am"));
+$("#12").append(localStorage.getItem("submit-12pm"));
+$("#1").append(localStorage.getItem("submit-1pm"));
+$("#2").append(localStorage.getItem("submit-2pm"));
+$("#3").append(localStorage.getItem("submit-3pm"));
+$("#4").append(localStorage.getItem("submit-4pm"));
+$("#5").append(localStorage.getItem("submit-5pm"));
