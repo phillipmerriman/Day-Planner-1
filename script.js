@@ -16,8 +16,72 @@ create click event for save button
     render text from localStorage to event field (localStorage.getItem("name from setItem ↑ "))
 */
 
-//set variables
+
 let currentHour = Number.parseInt(moment().format("H"));
+
+//create html
+let hours = [
+  9,
+  10,
+  11,
+  12,
+  1,
+  2,
+  3,
+  4,
+  5
+];
+
+// if (currentHour > hour9) {
+//   //     add class .past
+//   $("#9").removeClass("present future").addClass("past");
+// }
+
+function handleRemoveClass (id, x, y) {
+  $(id).removeClass(x).addClass(y);
+}
+
+for (let i = 0; i < hours.length; i++) {
+  let isAmOrPm = "";
+  if (hours[i] === 9 || hours[i] === 10 || hours[i] === 11) {
+    isAmOrPm = `${hours[i]}am`
+  } else {
+    isAmOrPm = `${hours[i]}pm`
+  }
+
+  let date = new Date();
+  let hour = date.getHours();
+
+  console.log(hour);
+
+  if (currentHour > hours[i]) {
+    //     add class .past
+    // $("#9").removeClass("present future").addClass("past");
+    handleRemoveClass(`#${hours[i]}`, "present future", "past");
+  }
+  // if time is present
+  else if (currentHour === hours[i]) {
+    //     add class .present
+    $(`#${hours[i]}`).removeClass("past future").addClass("present");
+  }
+  // if time is future
+  //     add class .future
+  else $(`#${hours[i]}`).removeClass("past present").addClass("future");
+
+  document.getElementById("time-blocks").innerHTML += `
+    <div class="row time-block" id="event-${isAmOrPm}">
+      <!-- time for block -->
+      <div class="col-md-1 hour" id="hour-${hours[i]}">${isAmOrPm}</div>
+      <!-- input for block -->
+      <textarea type="text" class="col-md-10 alert-primary" id="${hours[i]}" name="event-${isAmOrPm}" placeholder="Enter event"></textarea>
+      <!-- submit button for block -->
+      <input type="submit" class="saveBtn" value="&#127875 &#128190 &#127875" class="col-md-1" id="submit-${isAmOrPm}">
+    </div>
+  `
+
+}
+
+//set variables
 let hour9 = Number.parseInt($("#hour-9").text().split(" ")[0]);
 let hour10 = Number.parseInt($("#hour-10").text().split(" ")[0]);
 let hour11 = Number.parseInt($("#hour-11").text().split(" ")[0]);
@@ -33,11 +97,13 @@ setInterval(function () {
   $("#currentDay").text(moment().format("dddd MMM Do YYYY, h:mm:ss a"));
 }, 1000);
 
+
 //set color for past time blocks, present time blocks, future time blocks
 // if time has passed
 if (currentHour > hour9) {
   //     add class .past
-  $("#9").removeClass("present future").addClass("past");
+  // $("#9").removeClass("present future").addClass("past");
+  handleRemoveClass("#9", "present future", "past");
 }
 // if time is present
 else if (currentHour === hour9) {
