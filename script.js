@@ -169,3 +169,4 @@ $("#2").append(localStorage.getItem("submit-2pm"));
 $("#3").append(localStorage.getItem("submit-3pm"));
 $("#4").append(localStorage.getItem("submit-4pm"));
 $("#5").append(localStorage.getItem("submit-5pm"));
+console.log("new");
